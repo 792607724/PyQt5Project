@@ -9,6 +9,7 @@
 import sys
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QBrush, QPixmap
 from PyQt5.QtWidgets import QDesktopWidget, QMessageBox
 
@@ -31,6 +32,13 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(50, 50, 100, 30))
+        self.label.setText("This is a label")
+        palette = QtGui.QPalette()
+        palette.setColor(QtGui.QPalette.Background, Qt.red)
+        self.label.setPalette(palette)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -38,10 +46,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.resize(400, 300)
-        print(MainWindow.geometry())
+        # print(MainWindow.geometry())
         screen = QDesktopWidget().screenGeometry()
-        print(screen)
-        print(f"Screen width  {screen.width()} : Screen height  {screen.height()}")
+        # print(screen)
+        # print(f"Screen width  {screen.width()} : Screen height  {screen.height()}")
         palette = QtGui.QPalette()
         # set red color as window backgrounds
         # palette.setColor(QtGui.QPalette.Background, Qt.red)
