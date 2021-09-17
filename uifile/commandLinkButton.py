@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "命令链接按钮CommandLinkButton"))
-        self.commandLinkButton.setText(_translate("MainWindow", "CommandLinkButton"))
+        self.commandLinkButton.setText(_translate("MainWindow", "点击打开如下网页"))
         self.commandLinkButton.setDescription(_translate("MainWindow", "https://www.baidu.com"))
 
 
