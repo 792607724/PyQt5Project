@@ -33,10 +33,19 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(50, 50, 100, 30))
-        self.label.setText("This is a label")
+        self.label.setGeometry(QtCore.QRect(50, 50, 100, 100))
+        self.label.setText("This is a label,阿苏妲己是大是大非和速度阿u是否坏话和副i啊辉煌那就下次能看见这次你可记住你曾经你自己")
+        self.label.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignBottom)
+        self.label.setWordWrap(True)
         palette = QtGui.QPalette()
         palette.setColor(QtGui.QPalette.Background, Qt.red)
+
+        self.label_link = QtWidgets.QLabel(self.centralwidget)
+        self.label_link.setGeometry(QtCore.QRect(200, 100, 300, 30))
+        self.label_link.setText("<a href='https://www.baidu.com'>点击进入百度搜索</a>")
+        self.label_link.setOpenExternalLinks(True)
+        # self.label_link.setPixmap(QPixmap("./eager.jpg"))
+        print(self.label_link.text())
         self.label.setPalette(palette)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
 
@@ -55,7 +64,7 @@ class Ui_MainWindow(object):
         # palette.setColor(QtGui.QPalette.Background, Qt.red)
         # set image as window backgrounds and ignore aspect ratio and make it smooth transformation
         palette.setBrush(QtGui.QPalette.Background, QBrush(
-            QPixmap("./dolphing.png").scaled(MainWindow.size(), QtCore.Qt.IgnoreAspectRatio,
+            QPixmap("./eager.jpg").scaled(MainWindow.size(), QtCore.Qt.IgnoreAspectRatio,
                                              QtCore.Qt.SmoothTransformation)))
         MainWindow.setPalette(palette)
         MainWindow.setWindowOpacity(0.9)
