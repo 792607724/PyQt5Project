@@ -47,7 +47,7 @@ class Ui_MainWindow(object):
             self.item.setText(key + ":" + value)
             self.item.setToolTip(value)
 
-        self.listWidget.itemClicked.connect(self.getSelect)
+        self.listWidget.itemDoubleClicked.connect(self.getSelect)
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
