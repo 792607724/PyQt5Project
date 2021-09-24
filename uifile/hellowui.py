@@ -68,11 +68,11 @@ class Ui_MainWindow(object):
                                              QtCore.Qt.SmoothTransformation)))
         MainWindow.setPalette(palette)
         MainWindow.setWindowOpacity(0.9)
-        MainWindow.setWindowFlags(QtCore.Qt.WindowTitleHint)
+        MainWindow.setWindowFlags(QtCore.Qt.WindowCloseButtonHint)
         MainWindow.setWindowTitle(_translate("OK", "Index"))
         self.pushButton.setText(_translate("OK", "OK"))
-        # self.pushButton.clicked.connect(self.showMessage)
-        self.pushButton.clicked.connect(self.openAnotherWindow)
+        self.pushButton.clicked.connect(self.showMessage)
+        # self.pushButton.clicked.connect(self.openAnotherWindow)
 
     def showMessage(self):
         QMessageBox.information(MainWindow, "提示框", "欢迎进入PyQt5编程世界", QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
