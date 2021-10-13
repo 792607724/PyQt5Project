@@ -15,6 +15,7 @@ from PyQt5.QtGui import QIcon
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.MainWindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(405, 253)
         MainWindow.setMaximumSize(QtCore.QSize(405, 253))
@@ -57,6 +58,29 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.timer = QtCore.QBasicTimer()
+
+        self.pushButton.clicked.connect(self.timer_running)
+
+    def timer_running(self):
+        if self.timer.isActive():
+            self.timer.stop()
+            self.pushButton.setText("开始")
+            self.progressBar.setMaximum(100)
+            self.progressBar_2.setMaximum(100)
+            self.progressBar_3.setMaximum(100)
+            self.progressBar_4.setMaximum(100)
+        else:
+            self.timer.start(100, self.MainWindow)
+            self.pushButton.setText("停止")
+            self.progressBar.setMaximum(0)
+            self.progressBar.setMinimum(0)
+            self.progressBar_2.setMaximum(0)
+            self.progressBar_2.setMinimum(0)
+            self.progressBar_3.setMaximum(0)
+            self.progressBar_3.setMinimum(0)
+            self.progressBar_4.setMaximum(0)
+            self.progressBar_4.setMinimum(0)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
