@@ -34,6 +34,8 @@ class Ui_MainWindow(object):
         self.progressBar_3 = QtWidgets.QProgressBar(self.centralwidget)
         self.progressBar_3.setGeometry(QtCore.QRect(340, 0, 71, 261))
         self.progressBar_3.setLayoutDirection(Qt.RightToLeft)
+        # 竖直进度条需要设置是否反转进度条显示方向，setInvertedAppearance()为true时，进度条默认：从左至右或从上至下，为false时，从右至左或从下至上
+        self.progressBar_3.setInvertedAppearance(True)
         self.progressBar_3.setProperty("value", 24)
         self.progressBar_3.setTextVisible(False)
         self.progressBar_3.setOrientation(QtCore.Qt.Vertical)
