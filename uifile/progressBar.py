@@ -9,6 +9,7 @@
 import sys
 
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 
 
@@ -32,12 +33,14 @@ class Ui_MainWindow(object):
         self.progressBar_2.setObjectName("progressBar_2")
         self.progressBar_3 = QtWidgets.QProgressBar(self.centralwidget)
         self.progressBar_3.setGeometry(QtCore.QRect(340, 0, 71, 261))
+        self.progressBar_3.setLayoutDirection(Qt.RightToLeft)
         self.progressBar_3.setProperty("value", 24)
         self.progressBar_3.setTextVisible(False)
         self.progressBar_3.setOrientation(QtCore.Qt.Vertical)
         self.progressBar_3.setObjectName("progressBar_3")
         self.progressBar_4 = QtWidgets.QProgressBar(self.centralwidget)
         self.progressBar_4.setGeometry(QtCore.QRect(60, 200, 281, 61))
+        self.progressBar_4.setLayoutDirection(Qt.RightToLeft)
         self.progressBar_4.setProperty("value", 24)
         self.progressBar_4.setTextVisible(False)
         self.progressBar_4.setObjectName("progressBar_4")
