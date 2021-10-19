@@ -31,6 +31,7 @@ class Ui_MainWindow(object):
         self.page.setObjectName("page")
 
         self.toolButton = QtWidgets.QToolButton(self.page)
+
         self.toolButton.setGeometry(QtCore.QRect(0, 0, 231, 32))
         self.toolButton.setIcon(icon)
         self.toolButton.setIconSize(QtCore.QSize(32, 32))
