@@ -17,6 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(272, 250)
+        MainWindow.setMaximumSize(QtCore.QSize(272, 250))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.fontComboBox = QtWidgets.QFontComboBox(self.centralwidget)
