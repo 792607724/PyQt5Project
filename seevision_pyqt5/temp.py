@@ -34,6 +34,7 @@ class Ui_MainWindow(object):
 
 
 if __name__ == '__main__':
+    # Test
     app = QtWidgets.QApplication(sys.argv)
     mainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
