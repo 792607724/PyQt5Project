@@ -74,6 +74,7 @@ class Ui_MainWindow(object):
         else:
             self.timer.start(100, self.MainWindow)
             self.pushButton.setText("停止")
+            # 设置4个进度条的最大值和最小值都为0，以便显示循环滚动效果
             self.progressBar.setMaximum(0)
             self.progressBar.setMinimum(0)
             self.progressBar_2.setMaximum(0)
