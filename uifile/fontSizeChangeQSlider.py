@@ -70,11 +70,6 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.fontChangeLabel.setText(_translate("MainWindow", "敢想敢为，注重细节"))
-
     def setFontSizeUI(self, slider):
         if slider == self.horizontalSlider:
             value = self.horizontalSlider.value()
@@ -83,6 +78,11 @@ class Ui_MainWindow(object):
             value = self.verticalSlider.value()
             self.horizontalSlider.setValue(value)
         self.fontChangeLabel.setFont(QtGui.QFont("等线", value))
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.fontChangeLabel.setText(_translate("MainWindow", "敢想敢为，注重细节"))
 
 
 if __name__ == '__main__':
