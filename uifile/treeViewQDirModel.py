@@ -17,6 +17,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(792, 590)
         MainWindow.setMaximumSize(792, 590)
+        MainWindow.setContentsMargins(5, 5, 5, 5)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.treeView = QtWidgets.QTreeView(self.centralwidget)
