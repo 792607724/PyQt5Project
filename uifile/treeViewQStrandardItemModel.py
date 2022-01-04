@@ -48,10 +48,15 @@ class Ui_MainWindow(object):
             tp = QtGui.QStandardItem(testPoints[i])
             tcc = QtGui.QStandardItem(str(testCaseCount[i]))
             mp = QtGui.QStandardItem(str(manpower[i]))
+            # 二级节点内容
+            testCaseType = ["测试类型1", "测试类型2", "测试类型3", "测试类型4"]
+            testCaseCount_2 = [20, 12, 50, 30]
+            manpower_2 = [6, 6, 6, 8]
             model.appendRow([tp, tcc, mp])
+            for j in range(len(testCaseType)):
+                tp.appendRow([QtGui.QStandardItem(testCaseType[j]), QtGui.QStandardItem(str(testCaseCount_2[j])),
+                              QtGui.QStandardItem(str(manpower_2[j]))])
 
-        # 二级节点内容
-        testCaseTitleLabel = ["测试类型", "模块"]
         self.treeView.setModel(model)
 
 
