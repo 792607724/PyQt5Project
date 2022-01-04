@@ -56,7 +56,6 @@ class Ui_MainWindow(object):
             for j in range(len(testCaseType)):
                 tp.appendRow([QtGui.QStandardItem(testCaseType[j]), QtGui.QStandardItem(str(testCaseCount_2[j])),
                               QtGui.QStandardItem(str(manpower_2[j]))])
-
         self.treeView.setModel(model)
 
 
