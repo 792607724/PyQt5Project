@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>666</width>
-    <height>435</height>
+    <width>944</width>
+    <height>666</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,22 +19,12 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>666</width>
-     <height>21</height>
+     <width>944</width>
+     <height>23</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionasd">
-   <property name="text">
-    <string>asd</string>
-   </property>
-  </action>
-  <action name="actionasd_2">
-   <property name="text">
-    <string>asd</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>
