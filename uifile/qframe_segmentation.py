@@ -104,6 +104,7 @@ class Ui_MainWindow(object):
         self.label_8.setText(_translate("MainWindow", "Raised："))
 
 
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     app.setWindowIcon(QIcon("../images_file/doughnut.ico"))
