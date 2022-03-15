@@ -12,6 +12,8 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QFileDialog
 
+from pointCheck.pc import interface_Out
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -27,24 +29,19 @@ class Ui_MainWindow(object):
         self.label.setGeometry(QtCore.QRect(10, 10, 101, 20))
         self.label.setObjectName("label")
         self.buttonStartCheck = QtWidgets.QPushButton(self.centralwidget)
-        self.buttonStartCheck.setGeometry(QtCore.QRect(10, 110, 221, 23))
+        self.buttonStartCheck.setGeometry(QtCore.QRect(10, 80, 221, 53))
         self.buttonStartCheck.setObjectName("buttonStartCheck")
         self.lable_Status = QtWidgets.QLabel(self.centralwidget)
         self.lable_Status.setGeometry(QtCore.QRect(160, 10, 51, 20))
         self.lable_Status.setObjectName("lable_Status")
-        self.buttonGetPictureFolder = QtWidgets.QPushButton(self.centralwidget)
-        self.buttonGetPictureFolder.setGeometry(QtCore.QRect(10, 80, 221, 23))
-        self.buttonGetPictureFolder.setObjectName("buttonGetPictureFolder")
         MainWindow.setCentralWidget(self.centralwidget)
 
-        self.buttonGetPictureFolder.clicked.connect(self.getFolderPath)
+        self.buttonStartCheck.clicked.connect(self.checkBadPoint)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def getFolderPath(self):
-        picture_folder = QFileDialog.getExistingDirectory()
-        self.lable_Status.setText(picture_folder)
+    picture_folder = ""
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -52,12 +49,18 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "坏点检测软件"))
         self.buttonStartCheck.setText(_translate("MainWindow", "开始检测"))
         self.lable_Status.setText(_translate("MainWindow", "状态："))
-        self.buttonGetPictureFolder.setText(_translate("MainWindow", "选择待检测图片文件夹"))
+
+    def checkBadPoint(self):
+        picture_folder = QFileDialog.getExistingDirectory()
+        self.lable_Status.setText(picture_folder)
+        print(picture_folder)
+        if picture_folder:
+            interface_Out(picture_folder)
 
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    app.setWindowIcon(QIcon("./doughnut.ico"))
+    app.setWindowIcon(QIcon("../uifile/doughnut.ico"))
     mainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(mainWindow)
