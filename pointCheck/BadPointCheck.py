@@ -16,7 +16,11 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QFileDialog
 
-from pointCheck.pc import bad_check_area
+from pc import bad_check_area
+from PIL import Image
+
+# 设置递归限制，防止程序中的循环使得python内存溢出
+sys.setrecursionlimit(5000)
 
 
 class Ui_MainWindow(object):
@@ -25,10 +29,10 @@ class Ui_MainWindow(object):
         self.MainWindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(261, 137)
+        MainWindow.setMaximumSize(261, 137)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
-        global progressBar
         self.progressBar.setGeometry(QtCore.QRect(10, 40, 251, 31))
         self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName("progressBar")
@@ -53,7 +57,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "坏点检测工具V1.0"))
         self.label.setText(_translate("MainWindow", "坏点检测软件"))
         self.buttonStartCheck.setText(_translate("MainWindow", "开始检测"))
         self.lable_Status.setText(_translate("MainWindow", "状态："))
@@ -72,6 +76,7 @@ class Ui_MainWindow(object):
             picture_folder = QFileDialog.getExistingDirectory()
             self.lable_Status.setText(picture_folder)
             if picture_folder:
+                self.lable_Status.setText("请勿动哦！")
                 if self.interface_Out(picture_folder) == "Done":
                     self.progressBar.setValue(100)
                     self.lable_Status.setText("检测完毕")
@@ -90,24 +95,8 @@ class Ui_MainWindow(object):
             判断单张图片是否PASS：坏点数不超过0.002%
 
         """
-
-        # image_path = "./pictures/"
-        # # image_path = "./pictures_cat/"
         pictureFile = os.listdir(image_path)
-
-        pool = multiprocessing.Pool(len(pictureFile))
         check_type = 1
-        # check_type = 0
-        # 每张图片独立一个进程去操作
-        # for picture in pictureFile:
-        #     if len(pictureFile) >= 10:
-        #         sleep(1)
-        #     print("正在分析图片：{},图片较多请耐心等候！ ".format(picture))
-        #     picture_path = "{}/{}".format(image_path, picture)
-        #     pool.apply_async(func=bad_check_area, args=(picture_path, check_type, picture,))
-        # pool.close()
-        # pool.join()
-
         value = 0
         for picture in pictureFile:
             picture_count = len(pictureFile)
@@ -125,7 +114,7 @@ class Ui_MainWindow(object):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    app.setWindowIcon(QIcon("../uifile/doughnut.ico"))
+    app.setWindowIcon(QIcon("seevi.ico"))
     mainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(mainWindow)
