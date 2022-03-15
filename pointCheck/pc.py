@@ -121,7 +121,8 @@ def bad_check_area(picture_path, check_type, picture):
     pc = PointCheck(picture_path, check_type, picture)
     point_coordinate = pc.getAll_pixelsCoordinate(pc.getPictureSize())
     picture_infos = pc.analysis_point_info(pc.getPicturePixels(), point_coordinate, check_type)
-    pc.rebuild_picture_forBADPoint(picture_infos)
+    if picture_infos:
+        pc.rebuild_picture_forBADPoint(picture_infos)
 
 
 def interface_Out(image_path):

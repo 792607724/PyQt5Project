@@ -28,27 +28,34 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         self.MainWindow = MainWindow
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(261, 137)
-        MainWindow.setMaximumSize(261, 137)
+        MainWindow.resize(374, 137)
+        MainWindow.setMaximumSize(374, 137)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
-        self.progressBar.setGeometry(QtCore.QRect(10, 40, 251, 31))
+        self.progressBar.setGeometry(QtCore.QRect(10, 40, 361, 31))
         self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName("progressBar")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(10, 10, 101, 20))
         self.label.setObjectName("label")
         self.buttonStartCheck = QtWidgets.QPushButton(self.centralwidget)
-        self.buttonStartCheck.setGeometry(QtCore.QRect(10, 80, 221, 53))
+        self.buttonStartCheck.setGeometry(QtCore.QRect(10, 92, 361, 41))
         self.buttonStartCheck.setObjectName("buttonStartCheck")
         self.lable_Status = QtWidgets.QLabel(self.centralwidget)
-        self.lable_Status.setGeometry(QtCore.QRect(160, 10, 51, 20))
+        self.lable_Status.setGeometry(QtCore.QRect(240, 10, 131, 20))
         self.lable_Status.setObjectName("lable_Status")
+        self.radioButtonLight = QtWidgets.QRadioButton(self.centralwidget)
+        self.radioButtonLight.setGeometry(QtCore.QRect(110, 10, 97, 21))
+        self.radioButtonLight.setObjectName("radioButtonLight")
+        self.radioButton_Dark = QtWidgets.QRadioButton(self.centralwidget)
+        self.radioButton_Dark.setGeometry(QtCore.QRect(160, 10, 97, 21))
+        self.radioButton_Dark.setObjectName("radioButton_Dark")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.buttonStartCheck.clicked.connect(self.checkBadPoint)
         self.timer = QtCore.QBasicTimer()
+        self.radioButtonLight.setChecked(True)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -57,10 +64,12 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "坏点检测工具V1.0"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "坏点检测软件"))
         self.buttonStartCheck.setText(_translate("MainWindow", "开始检测"))
         self.lable_Status.setText(_translate("MainWindow", "状态："))
+        self.radioButtonLight.setText(_translate("MainWindow", "亮"))
+        self.radioButton_Dark.setText(_translate("MainWindow", "暗"))
 
     def checkBadPoint(self):
         if self.timer.isActive():
@@ -100,6 +109,10 @@ class Ui_MainWindow(object):
         value = 0
         for picture in pictureFile:
             picture_count = len(pictureFile)
+            if self.radioButtonLight.isChecked():
+                check_type = 0
+            elif self.radioButton_Dark.isChecked():
+                check_type = 1
             if picture_count >= 10:
                 sleep(1)
             print("正在分析图片：{},图片较多请耐心等候！ ".format(picture))
