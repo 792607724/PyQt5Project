@@ -119,7 +119,7 @@ class Ui_MainWindow(object):
             picture_path = "{}/{}".format(image_path, picture)
             t = threading.Thread(target=bad_check_area, args=(picture_path, check_type, picture,))
             t.start()
-            t.join(3)
+            t.join(10)
             value += (1 / picture_count) * 100
             self.progressBar.setValue(value)
         return "Done"
