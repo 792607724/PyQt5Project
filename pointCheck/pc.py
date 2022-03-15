@@ -1,6 +1,7 @@
 # coding = utf8
 import multiprocessing
 import os
+import threading
 from time import sleep
 
 os.path.abspath("../uifile")
@@ -140,18 +141,29 @@ def interface_Out(image_path):
     # image_path = "./pictures/"
     # # image_path = "./pictures_cat/"
     pictureFile = os.listdir(image_path)
+
     pool = multiprocessing.Pool(len(pictureFile))
     check_type = 1
     # check_type = 0
     # 每张图片独立一个进程去操作
+    # for picture in pictureFile:
+    #     if len(pictureFile) >= 10:
+    #         sleep(1)
+    #     print("正在分析图片：{},图片较多请耐心等候！ ".format(picture))
+    #     picture_path = "{}/{}".format(image_path, picture)
+    #     pool.apply_async(func=bad_check_area, args=(picture_path, check_type, picture,))
+    # pool.close()
+    # pool.join()
+
     for picture in pictureFile:
         if len(pictureFile) >= 10:
             sleep(1)
         print("正在分析图片：{},图片较多请耐心等候！ ".format(picture))
         picture_path = "{}/{}".format(image_path, picture)
-        pool.apply_async(func=bad_check_area, args=(picture_path, check_type, picture,))
-    pool.close()
-    pool.join()
+        t = threading.Thread(target=bad_check_area, args=(picture_path, check_type, picture,))
+        t.start()
+        t.join(3)
+    return "Done"
 
 
 if __name__ == '__main__':
