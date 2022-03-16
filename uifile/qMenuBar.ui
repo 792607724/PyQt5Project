@@ -6,25 +6,49 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>944</width>
-    <height>666</height>
+    <width>593</width>
+    <height>394</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>944</width>
-     <height>23</height>
+     <width>593</width>
+     <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu123">
+    <property name="title">
+     <string>123</string>
+    </property>
+    <widget class="QMenu" name="menu789">
+     <property name="title">
+      <string>789</string>
+     </property>
+     <addaction name="action123_2"/>
+    </widget>
+    <addaction name="action123"/>
+    <addaction name="menu789"/>
+   </widget>
+   <addaction name="menu123"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action123">
+   <property name="text">
+    <string>123</string>
+   </property>
+  </action>
+  <action name="action123_2">
+   <property name="text">
+    <string>123 </string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
