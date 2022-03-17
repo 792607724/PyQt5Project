@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
         self.toolBar.setObjectName("toolBar")
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
 
-        # Toolbar会根据Action返回的currentIndexChanged信号来定位当前是哪一个Action操作
+        # 单机QAction的对象 - Toolbar会根据Action返回的currentIndexChanged信号来定位当前是哪一个Action操作
         self.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.toolBar.addSeparator()
         # self.toolBar.addAction(QtGui.QIcon("./doughnut.ico"), "甜甜圈1")
@@ -52,6 +52,7 @@ class Ui_MainWindow(object):
 
         self.candyCircle1.triggered.connect(self.isCandy)
         self.candyCircle2.triggered.connect(self.isCandy)
+        self.combox.currentIndexChanged.connect(self.whichCareer)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -61,6 +62,9 @@ class Ui_MainWindow(object):
 
     def isCandy(self):
         QMessageBox.information(self.MainWindow, "Look", "This is Candy window", QMessageBox.Ok)
+
+    def whichCareer(self):
+        QMessageBox.information(self.MainWindow, "That", "职位：{}".format(self.combox.currentText()), QMessageBox.Ok)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
