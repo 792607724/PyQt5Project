@@ -27,6 +27,7 @@ class Ui_MainWindow(object):
         self.toolBar.setObjectName("toolBar")
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
 
+        # Toolbar会根据Action返回的currentIndexChanged信号来定位当前是哪一个Action操作
         self.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.toolBar.addSeparator()
         # self.toolBar.addAction(QtGui.QIcon("./doughnut.ico"), "甜甜圈1")
@@ -45,11 +46,18 @@ class Ui_MainWindow(object):
         self.toolBar.addSeparator()
         self.toolBar.addWidget(QtWidgets.QLabel("这个工具栏可以放好多好多东西的"))
 
+        self.toolBar.actionTriggered[QtWidgets.QAction].connect(self.getValue)
+
+        self.toolBar.setIconSize(QtCore.QSize(20, 20))
+
         self.candyCircle1.triggered.connect(self.isCandy)
         self.candyCircle2.triggered.connect(self.isCandy)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def getValue(self, t):
+        QMessageBox.information(self.MainWindow, "OK", "See {}".format(t.text()), QMessageBox.Ok)
 
     def isCandy(self):
         QMessageBox.information(self.MainWindow, "Look", "This is Candy window", QMessageBox.Ok)
