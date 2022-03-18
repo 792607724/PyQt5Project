@@ -39,8 +39,17 @@ class Ui_MainWindow(object):
         self.button.clicked.connect(self.startTimer)
         self.button_stop.clicked.connect(self.stopTimer)
 
+        self.showDateTimer = QTimer()
+        self.showDateTimer.timeout.connect(self.getDateAndTime)
+        self.showDateTimer.start(1000)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def getDateAndTime(self):
+        dateTime = QtCore.QDateTime.currentDateTime()
+        timeFormat = dateTime.toString("yyyy-MM-dd HH:mm:ss")
+        self.statusbar.showMessage("北京时间：{}".format(timeFormat),0)
 
     def startTimer(self):
         self.timer.start(3000)
