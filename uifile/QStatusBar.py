@@ -11,7 +11,7 @@ import sys
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox, QFileDialog
 
 
 class Ui_MainWindow(object):
@@ -42,6 +42,10 @@ class Ui_MainWindow(object):
         self.showDateTimer = QTimer()
         self.showDateTimer.timeout.connect(self.getDateAndTime)
         self.showDateTimer.start(1000)
+
+        # print(QFileDialog.getExistingDirectoryUrl())
+        # print(QFileDialog.getExistingDirectory())
+        # QMessageBox.critical(self.MainWindow, "Error:", "Please check this error", QMessageBox.Ok)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
