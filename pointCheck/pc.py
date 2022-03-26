@@ -1,4 +1,5 @@
 # coding = utf8
+import glob
 import multiprocessing
 import os
 import threading
@@ -139,6 +140,13 @@ def interface_Out(image_path):
 
     """
 
+    # glob 优化筛选模式
+    types = ("*.jpg", "*.bmp")
+    files_list = []
+    for files in types:
+        files_list.extend(glob.glob(os.path.join(image_path, files)))
+    print(files_list)
+
     # image_path = "./pictures/"
     # # image_path = "./pictures_cat/"
     pictureFile = os.listdir(image_path)
@@ -156,12 +164,12 @@ def interface_Out(image_path):
     # pool.close()
     # pool.join()
 
-    for picture in pictureFile:
+    for picture in files_list:
         if len(pictureFile) >= 10:
             sleep(1)
         print("正在分析图片：{},图片较多请耐心等候！ ".format(picture))
-        picture_path = "{}/{}".format(image_path, picture)
-        t = threading.Thread(target=bad_check_area, args=(picture_path, check_type, picture,))
+        # picture_path = "{}/{}".format(image_path, picture)
+        t = threading.Thread(target=bad_check_area, args=(picture, check_type, picture.split("\\")[1],))
         t.start()
         t.join(3)
     return "Done"
