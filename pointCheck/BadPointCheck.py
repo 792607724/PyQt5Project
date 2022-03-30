@@ -17,6 +17,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QFileDialog
 
 from pc import bad_check_area
+# from PIL import Image -- 不可缺少，打包时需要添加此句，保证运行库完整
 from PIL import Image
 
 # 设置递归限制，防止程序中的循环使得python内存溢出
@@ -26,6 +27,12 @@ sys.setrecursionlimit(5000)
 class Ui_MainWindow(object):
 
     def setupUi(self, MainWindow):
+        """
+        PyQt5 UI主界面控件绘制
+        :param MainWindow:QMainWindow主窗口对象，为用户提供了一个应用程序框架，拥有自己的布局，可以在布局中添加不同的控件，
+        QMainWindow窗口可以包含菜单栏、工具栏、状态栏、标题栏等，一般作为GUI的主窗口使用
+        :return:None
+        """
         self.MainWindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(374, 137)
@@ -63,6 +70,11 @@ class Ui_MainWindow(object):
     picture_folder = ""
 
     def retranslateUi(self, MainWindow):
+        """
+        ui转换py会自带该函数，动态翻译的解决方案，重新翻译一遍ui
+        :param MainWindow:QMainWindow主窗口对象
+        :return:None
+        """
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "坏点检测软件"))
         self.label.setText(_translate("MainWindow", "坏点检测软件"))
@@ -72,6 +84,10 @@ class Ui_MainWindow(object):
         self.radioButton_Dark.setText(_translate("MainWindow", "暗"))
 
     def checkBadPoint(self):
+        """
+        坏点检测逻辑控制工具ui状态变化
+        :return:None
+        """
         if self.timer.isActive():
             self.timer.stop()
             self.lable_Status.setText("未开始检测")
@@ -93,16 +109,15 @@ class Ui_MainWindow(object):
 
     def interface_Out(self, image_path):
         """
-            Description:
+            Description:坏点检测流程控制 - PyQt5（兼容至）
             图片坏点检测：
             1、0 - 纯白图片检测：判断每个像素点Y亮度小于-5即为坏点
             2、1 - 纯黑图片检测：判断每个像素点Y亮度大于60即为坏点
-
             换算公式：
             Y(亮度)=(0.299*R)+(0.587*G)+(0.114*B)
-
             判断单张图片是否PASS：坏点数不超过0.002%
-
+            :param image_path:待检测图片路径
+            :return:返回当前图片坏点检测是否结束
         """
         pictureFile = os.listdir(image_path)
         check_type = 1
@@ -126,6 +141,9 @@ class Ui_MainWindow(object):
 
 
 if __name__ == '__main__':
+    """
+        坏点检测工具 - PyQt5启动函数
+    """
     app = QtWidgets.QApplication(sys.argv)
     app.setWindowIcon(QIcon("seevi.ico"))
     mainWindow = QtWidgets.QMainWindow()

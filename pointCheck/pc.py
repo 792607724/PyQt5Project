@@ -32,30 +32,53 @@ from PIL import Image
 class PointCheck:
 
     def __init__(self, picture_path, check_type, picture_name):
+        """
+        坏点检测实现脚本 - 初始化函数
+        :param picture_path:待检测图片路径
+        :param check_type:待检测图片的检测类型
+        :param picture_name:待检测图片名称
+        """
         self.picture_path = picture_path
         self.check_type = check_type
         self.img_src = Image.open(self.picture_path)
         self.picture_name = picture_name
 
     def getPictureSize(self):
+        """
+        获取待检测图片的宽高值
+        :return:返回待检测图片宽高值
+        """
         return self.img_src.size
 
     def getPicturePixels(self):
+        """
+        获取待检测图片的所有像素点
+        :return:返回待检测图片的所有像素点
+        """
         img_src = self.img_src.convert("RGBA")
         pixel_list = img_src.load()
         return pixel_list
 
     def getAll_pixelsCoordinate(self, picture_size):
+        """
+        获取待检测图片的所有像素点的坐标
+        :param picture_size:待检测图片宽高值
+        :return:返回包含所有像素点的坐标列表
+        """
         point_coordinate = []
         for x in range(0, picture_size[0]):
             for y in range(0, picture_size[1]):
                 point_coordinate.append((x, y))
         return point_coordinate
 
-    def pixel_1(self, pixel_list, point):
-        print(pixel_list[point])
-
     def analysis_point_info(self, pixel_list, point_coordinate, check_type):
+        """
+        亮/暗像素点分析，分析一张图片的所有像素点，找出坏点的个数、位置，并生成一张新的图片，坏点使用其他颜色突出显示，指出图片总像素点数以及坏点数
+        :param pixel_list:待检测图片所有像素点列表
+        :param point_coordinate:待检测图片的所有像素点的坐标
+        :param check_type:待检测图片的检测类型
+        :return:返回每张图片的检测结果和坏点列表（包含每个坏点的坐标和亮度值）再对每张图片进行坏点突出绘制一张新的图片
+        """
         # 每个像素点一个进程去分析
         bad_point_list = []
         for point in point_coordinate:
@@ -101,6 +124,11 @@ class PointCheck:
             print("{} - 图片没有坏点!!!".format(self.picture_name))
 
     def rebuild_picture_forBADPoint(self, picture_infos):
+        """
+        对有坏点的图片进行坏点突出，重新绘制一张新的图片
+        :param picture_infos:图片检测后的数据，包括所有坏点坐标、该图片的测试结果、总像素点数
+        :return:None
+        """
         # 图片命名 原图片名+总像素点数+坏点数.jpg
         # print(picture_infos)
         bad_point_list = picture_infos["bad_point_list"]
@@ -119,6 +147,13 @@ class PointCheck:
 
 
 def bad_check_area(picture_path, check_type, picture):
+    """
+    单张图片坏点检测流程控制
+    :param picture_path:待检测图片路径
+    :param check_type:待检测图片的检测类型
+    :param picture:待检测图片名称
+    :return:None
+    """
     pc = PointCheck(picture_path, check_type, picture)
     point_coordinate = pc.getAll_pixelsCoordinate(pc.getPictureSize())
     picture_infos = pc.analysis_point_info(pc.getPicturePixels(), point_coordinate, check_type)
@@ -128,47 +163,28 @@ def bad_check_area(picture_path, check_type, picture):
 
 def interface_Out(image_path):
     """
-        Description:
+        Description:坏点检测流程控制
         图片坏点检测：
         1、0 - 纯白图片检测：判断每个像素点Y亮度小于-5即为坏点
         2、1 - 纯黑图片检测：判断每个像素点Y亮度大于60即为坏点
-
         换算公式：
         Y(亮度)=(0.299*R)+(0.587*G)+(0.114*B)
-
         判断单张图片是否PASS：坏点数不超过0.002%
-
+        :param image_path:待检测图片路径
     """
 
-    # glob 优化筛选模式
+    # glob 优化筛选模式 节约算力
     types = ("*.jpg", "*.bmp")
     files_list = []
     for files in types:
         files_list.extend(glob.glob(os.path.join(image_path, files)))
     print(files_list)
-
-    # image_path = "./pictures/"
-    # # image_path = "./pictures_cat/"
     pictureFile = os.listdir(image_path)
-
-    pool = multiprocessing.Pool(len(pictureFile))
     check_type = 1
-    # check_type = 0
-    # 每张图片独立一个进程去操作
-    # for picture in pictureFile:
-    #     if len(pictureFile) >= 10:
-    #         sleep(1)
-    #     print("正在分析图片：{},图片较多请耐心等候！ ".format(picture))
-    #     picture_path = "{}/{}".format(image_path, picture)
-    #     pool.apply_async(func=bad_check_area, args=(picture_path, check_type, picture,))
-    # pool.close()
-    # pool.join()
-
     for picture in files_list:
         if len(pictureFile) >= 10:
             sleep(1)
         print("正在分析图片：{},图片较多请耐心等候！ ".format(picture))
-        # picture_path = "{}/{}".format(image_path, picture)
         t = threading.Thread(target=bad_check_area, args=(picture, check_type, picture.split("\\")[1],))
         t.start()
         t.join(3)
