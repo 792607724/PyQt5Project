@@ -5,7 +5,7 @@ import sys
 
 from PyQt5 import QtWidgets
 
-from Seevision.TEST_TOOL_BOX.SeevisionToolBox import Ui_MainWindow
+from SeevisionToolBox import Ui_MainWindow
 
 os.path.abspath(".")
 
@@ -22,13 +22,13 @@ sys.setrecursionlimit(5000)
 def HidToolToolBar(btn_type):
     software_path = ""
     if btn_type == "hidTool2_4":
-        software_path = r"./Tools/HIDTools_2_4/HIDTool.exe"
+        software_path = "./Tools/HIDTools_2_4/HIDTool.exe"
     elif btn_type == "hidTool2_5":
-        software_path = r"./Tools/HIDTools_2_5/HIDTool_2_5.exe"
+        software_path = "./Tools/HIDTools_2_5/HIDTool_2_5.exe"
     elif btn_type == "flashTest":
-        software_path = r"./Tools/FlashTest/FlastTest.exe"
+        software_path = "./Tools/FlashTest/FlastTest.exe"
     elif btn_type == "switchResolutionTest":
-        software_path = r"./Tools/SwitchResolutionTest/SwitchResolutionTest.exe"
+        software_path = "./Tools/SwitchResolutionTest/SwitchResolutionTest.exe"
     launchSoftware(software_path)
 
 
