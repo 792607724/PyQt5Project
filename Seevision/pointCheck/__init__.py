@@ -1,7 +1,7 @@
 # coding = utf8
 import os
 
-os.path.abspath(".")
+os.path.abspath("")
 """
     @Project:PyQt5Project
     @File:__init__.py.py
