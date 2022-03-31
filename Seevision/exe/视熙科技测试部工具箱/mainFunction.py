@@ -44,7 +44,12 @@ def ScriptListControlBar(script_name):
 
 
 def ScriptControlBar(script_path):
-    # BAD!!!!!! 当前执行脚本后的log接收，必须在每个脚本的log都写入log.txt中，待后续使用QThread进行优化重构
+    """
+    # BAD!!!!!!
+    该工具需要管理员模式运行：当前执行脚本后的log接收，必须在每个脚本的log都写入log.txt中，待后续使用QThread进行优化重构
+    :param script_path:
+    :return:
+    """
     log_path = ".\log.txt"
     # logProcess = subprocess.Popen("python {} one two 2>&1 | tee {}".format(script_path, log_path), shell=True)
     logProcess = subprocess.Popen("python {} ".format(script_path), shell=True)
