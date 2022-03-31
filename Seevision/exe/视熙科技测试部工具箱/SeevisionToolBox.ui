@@ -159,9 +159,28 @@
       <height>541</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string/>
+    </property>
     <property name="title">
      <string>脚本列表</string>
     </property>
+    <widget class="QPushButton" name="btn_Script_HelloWorld">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>301</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>点击运行helloWorld.py脚本</string>
+     </property>
+     <property name="text">
+      <string>helloWorld.py</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
@@ -173,8 +192,18 @@
      </rect>
     </property>
     <property name="title">
-     <string>脚本控制栏</string>
+     <string>脚本运行输出内容</string>
     </property>
+    <widget class="QPlainTextEdit" name="log_output_EditText">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>201</width>
+       <height>511</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

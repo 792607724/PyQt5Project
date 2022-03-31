@@ -11,8 +11,16 @@ os.path.abspath("..")
     @Date:2022/3/31 16:25
 """
 
+
+def toTxt(log):
+    with open(".\log.txt", "a+") as f:
+        f.write(log + "\n")
+
+
 if __name__ == '__main__':
     # while True:
+    print(os.path.abspath('.'))
     for i in range(99):
         sleep(2)
         print("Hello World! {}".format(i))
+        toTxt("Hello World! {}".format(i))

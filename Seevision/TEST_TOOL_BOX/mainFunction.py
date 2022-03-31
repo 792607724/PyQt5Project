@@ -2,9 +2,10 @@
 import os
 import subprocess
 import sys
+from time import sleep
 
 from PyQt5 import QtWidgets, QtGui
-from PyQt5.QtWidgets import QMessageBox, QApplication
+from PyQt5.QtWidgets import QApplication, QMessageBox
 
 from SeevisionToolBox import Ui_MainWindow
 
@@ -43,8 +44,24 @@ def ScriptListControlBar(script_name):
 
 
 def ScriptControlBar(script_path):
+
+    """
+    # BAD!!!!!!
+    该工具需要管理员模式运行：当前执行脚本后的log接收，必须在每个脚本的log都写入log.txt中，待后续使用QThread进行优化重构
+    :param script_path:
+    :return:
+    """
     log_path = ".\log.txt"
-    logProcess = subprocess.Popen("python {} > {}".format(script_path, log_path), shell=True)
+    # logProcess = subprocess.Popen("python {} one two 2>&1 | tee {}".format(script_path, log_path), shell=True)
+    logProcess = subprocess.Popen("python {} ".format(script_path), shell=True)
+    # logProcess = subprocess.Popen("python {}".format(script_path), shell=True, stdout=subprocess.PIPE,
+    #                               stderr=subprocess.PIPE, bufsize=1)
+    # while logProcess.poll() is None:
+    #     line_data = logProcess.stdout.readline().decode("utf-8")
+    #     ui.log_output_EditText.appendPlainText(str(line_data))
+    #     QApplication.processEvents()
+    QMessageBox.information(mainWindow, "提示", "等待3s创建log文件……", QMessageBox.Ok)
+    sleep(3)
     if logProcess:
         QMessageBox.information(mainWindow, "提示", "脚本运行成功：【{}】".format(script_path), QMessageBox.Ok)
         ui.log_output_EditText.appendPlainText("Here is log output Console:")
