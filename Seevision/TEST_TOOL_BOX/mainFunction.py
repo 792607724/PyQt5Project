@@ -4,6 +4,7 @@ import subprocess
 import sys
 
 from PyQt5 import QtWidgets, QtGui
+from PyQt5.QtWidgets import QMessageBox, QApplication
 
 from SeevisionToolBox import Ui_MainWindow
 
@@ -34,12 +35,28 @@ def HidToolToolBar(btn_type):
     launchSoftware(software_path)
 
 
-def ScriptListControlBar():
-    pass
+def ScriptListControlBar(script_name):
+    script_path = ""
+    if script_name == "hellowWorld":
+        script_path = "./Scripts/hellowWorld.py"
+    ScriptControlBar(script_path)
 
 
-def ScriptControlBar():
-    pass
+def ScriptControlBar(script_path):
+    log_path = ".\log.txt"
+    logProcess = subprocess.Popen("python {} > {}".format(script_path, log_path), shell=True)
+    if logProcess:
+        QMessageBox.information(mainWindow, "提示", "脚本运行成功：【{}】".format(script_path), QMessageBox.Ok)
+        ui.log_output_EditText.appendPlainText("Here is log output Console:")
+        QApplication.processEvents()
+        with open(log_path, "r") as log_file:
+            while True:
+                line_data = log_file.readline()
+                if line_data != "":
+                    ui.log_output_EditText.appendPlainText(str(line_data))
+                QApplication.processEvents()
+    else:
+        QMessageBox.information(mainWindow, "提示", "脚本运行失败：【{}】".format(script_path), QMessageBox.Ok)
 
 
 def launchSoftware(software_path):
@@ -53,11 +70,15 @@ def closeSoftware():
 
 
 def ui_connect():
+    # Tool part
     ui.btn_hidTool_2_4.clicked.connect(lambda: HidToolToolBar("hidTool2_4"))
     ui.btn_hidTool_2_5.clicked.connect(lambda: HidToolToolBar("hidTool2_5"))
     ui.btn_FlashTest.clicked.connect(lambda: HidToolToolBar("flashTest"))
     ui.btn_SwitchResolutionTest.clicked.connect(lambda: HidToolToolBar("switchResolutionTest"))
     ui.btn_BadPointCheck.clicked.connect(lambda: HidToolToolBar("badPointCheck"))
+
+    # Script part
+    ui.btn_Script_HelloWorld.clicked.connect(lambda: ScriptListControlBar("hellowWorld"))
 
 
 if __name__ == '__main__':
