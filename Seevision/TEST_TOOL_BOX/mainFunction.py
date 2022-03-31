@@ -25,6 +25,10 @@ def HidToolToolBar(btn_type):
         software_path = r"./Tools/HIDTools_2_4/HIDTool.exe"
     elif btn_type == "hidTool2_5":
         software_path = r"./Tools/HIDTools_2_5/HIDTool_2_5.exe"
+    elif btn_type == "flashTest":
+        software_path = r"./Tools/FlashTest/FlastTest.exe"
+    elif btn_type == "switchResolutionTest":
+        software_path = r"./Tools/SwitchResolutionTest/SwitchResolutionTest.exe"
     launchSoftware(software_path)
 
 
@@ -49,6 +53,8 @@ def closeSoftware():
 def ui_connect():
     ui.btn_hidTool_2_4.clicked.connect(lambda: HidToolToolBar("hidTool2_4"))
     ui.btn_hidTool_2_5.clicked.connect(lambda: HidToolToolBar("hidTool2_5"))
+    ui.btn_FlashTest.clicked.connect(lambda: HidToolToolBar("flashTest"))
+    ui.btn_SwitchResolutionTest.clicked.connect(lambda: HidToolToolBar("switchResolutionTest"))
 
 
 if __name__ == '__main__':
