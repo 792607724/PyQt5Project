@@ -44,7 +44,6 @@ def ScriptListControlBar(script_name):
 
 
 def ScriptControlBar(script_path):
-
     """
     # BAD!!!!!!
     该工具需要管理员模式运行：当前执行脚本后的log接收，必须在每个脚本的log都写入log.txt中，待后续使用QThread进行优化重构
