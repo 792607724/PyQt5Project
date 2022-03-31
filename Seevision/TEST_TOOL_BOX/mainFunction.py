@@ -3,7 +3,7 @@ import os
 import subprocess
 import sys
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui
 
 from SeevisionToolBox import Ui_MainWindow
 
@@ -29,6 +29,8 @@ def HidToolToolBar(btn_type):
         software_path = "./Tools/FlashTest/FlastTest.exe"
     elif btn_type == "switchResolutionTest":
         software_path = "./Tools/SwitchResolutionTest/SwitchResolutionTest.exe"
+    elif btn_type == "badPointCheck":
+        software_path = "./Tools/BadPointCheck/BadPointCheck.exe"
     launchSoftware(software_path)
 
 
@@ -55,6 +57,7 @@ def ui_connect():
     ui.btn_hidTool_2_5.clicked.connect(lambda: HidToolToolBar("hidTool2_5"))
     ui.btn_FlashTest.clicked.connect(lambda: HidToolToolBar("flashTest"))
     ui.btn_SwitchResolutionTest.clicked.connect(lambda: HidToolToolBar("switchResolutionTest"))
+    ui.btn_BadPointCheck.clicked.connect(lambda: HidToolToolBar("badPointCheck"))
 
 
 if __name__ == '__main__':
@@ -62,6 +65,9 @@ if __name__ == '__main__':
     mainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(mainWindow)
+    icon = QtGui.QIcon()
+    icon.addPixmap(QtGui.QPixmap("./seevi_64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+    mainWindow.setWindowIcon(icon)
     ui_connect()
     mainWindow.show()
     sys.exit(app.exec_())

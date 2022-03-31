@@ -12,15 +12,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
-
     def setupUi(self, MainWindow):
-        self.MainWindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
         MainWindow.setMinimumSize(QtCore.QSize(800, 600))
         MainWindow.setMaximumSize(QtCore.QSize(800, 600))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("./seevi_64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("C:/Users/CHENGUANGTAO/.designer/backup/seevi_64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setIconSize(QtCore.QSize(64, 64))
@@ -46,6 +44,9 @@ class Ui_MainWindow(object):
         self.btn_hidTool_2_5 = QtWidgets.QPushButton(self.groupBox)
         self.btn_hidTool_2_5.setGeometry(QtCore.QRect(10, 50, 211, 23))
         self.btn_hidTool_2_5.setObjectName("btn_hidTool_2_5")
+        self.btn_BadPointCheck = QtWidgets.QPushButton(self.groupBox)
+        self.btn_BadPointCheck.setGeometry(QtCore.QRect(10, 140, 211, 23))
+        self.btn_BadPointCheck.setObjectName("btn_BadPointCheck")
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_2.setGeometry(QtCore.QRect(250, 10, 311, 541))
         self.groupBox_2.setObjectName("groupBox_2")
@@ -68,7 +69,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "视熙测试工具箱"))
         MainWindow.setToolTip(_translate("MainWindow", "视熙科技测试部工具箱"))
-        self.groupBox.setTitle(_translate("MainWindow", "HidTool工具栏"))
+        self.groupBox.setTitle(_translate("MainWindow", "测试工具栏"))
         self.btn_hidTool_2_4.setToolTip(_translate("MainWindow", "点击打开HidTool 2.4"))
         self.btn_hidTool_2_4.setText(_translate("MainWindow", "HIDTool 2.4"))
         self.btn_FlashTest.setToolTip(_translate("MainWindow", "点击打开FlashTest测试工具"))
@@ -77,5 +78,7 @@ class Ui_MainWindow(object):
         self.btn_SwitchResolutionTest.setText(_translate("MainWindow", "SwitchResolutionTest"))
         self.btn_hidTool_2_5.setToolTip(_translate("MainWindow", "点击打开HidTool 2.5"))
         self.btn_hidTool_2_5.setText(_translate("MainWindow", "HIDTool 2.5"))
+        self.btn_BadPointCheck.setToolTip(_translate("MainWindow", "点击打开分辨率切换测试页面"))
+        self.btn_BadPointCheck.setText(_translate("MainWindow", "坏点检测工具"))
         self.groupBox_2.setTitle(_translate("MainWindow", "脚本列表"))
         self.groupBox_3.setTitle(_translate("MainWindow", "脚本控制栏"))

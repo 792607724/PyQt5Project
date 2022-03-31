@@ -64,7 +64,7 @@
      <bool>false</bool>
     </property>
     <property name="title">
-     <string>HidTool工具栏</string>
+     <string>测试工具栏</string>
     </property>
     <property name="flat">
      <bool>false</bool>
@@ -131,6 +131,22 @@
      </property>
      <property name="text">
       <string>HIDTool 2.5</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_BadPointCheck">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>140</y>
+       <width>211</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>点击打开分辨率切换测试页面</string>
+     </property>
+     <property name="text">
+      <string>坏点检测工具</string>
      </property>
     </widget>
    </widget>

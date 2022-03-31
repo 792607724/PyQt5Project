@@ -1,0 +1,101 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/TEST_TOOL_BOX/mainFunction.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": false
+  },
+  {
+   "optionDest": "console",
+   "value": false
+  },
+  {
+   "optionDest": "icon_file",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/TEST_TOOL_BOX/seevi_128.ico"
+  },
+  {
+   "optionDest": "name",
+   "value": "\u89c6\u7199\u79d1\u6280\u6d4b\u8bd5\u90e8\u5de5\u5177\u7bb1"
+  },
+  {
+   "optionDest": "ascii",
+   "value": false
+  },
+  {
+   "optionDest": "clean_build",
+   "value": true
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "disable_windowed_traceback",
+   "value": false
+  },
+  {
+   "optionDest": "embed_manifest",
+   "value": true
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "win_private_assemblies",
+   "value": false
+  },
+  {
+   "optionDest": "win_no_prefer_redirects",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/TEST_TOOL_BOX/__init__.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/TEST_TOOL_BOX/mainFunction.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/TEST_TOOL_BOX/seevi_64.ico;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/TEST_TOOL_BOX/SeevisionToolBox.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/TEST_TOOL_BOX/SeevisionToolBox.ui;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/TEST_TOOL_BOX/Tools;Tools/"
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": false,
+  "manualArguments": ""
+ }
+}
