@@ -165,36 +165,17 @@
     <property name="title">
      <string>脚本列表</string>
     </property>
-    <widget class="QPushButton" name="btn_Script_HelloWorld">
+    <widget class="QListView" name="listView_ScriptList">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>20</y>
+       <x>5</x>
+       <y>21</y>
        <width>301</width>
-       <height>21</height>
+       <height>511</height>
       </rect>
      </property>
      <property name="toolTip">
-      <string>点击运行helloWorld.py脚本</string>
-     </property>
-     <property name="text">
-      <string>helloWorld.py</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_Script_GetBetteryHealthd">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>301</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>点击运行getBatteryHealthd.py脚本</string>
-     </property>
-     <property name="text">
-      <string>getBatteryHealthd.py</string>
+      <string>脚本列表显示</string>
      </property>
     </widget>
    </widget>

@@ -1,0 +1,16 @@
+Hello World! 0
+Hello World! 1
+第1次dump电池充电数据情况：
+
+(None, None)
+Hello World! 2
+Hello World! 3
+第2次dump电池充电数据情况：
+
+(None, None)
+Hello World! 4
+第3次dump电池充电数据情况：
+
+(None, None)
+Hello World! 5
+Hello World! 6

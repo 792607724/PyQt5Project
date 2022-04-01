@@ -2,9 +2,9 @@
 import os
 import subprocess
 import sys
-from time import sleep
 
 from PyQt5 import QtWidgets, QtGui
+from PyQt5.QtCore import QStringListModel
 from PyQt5.QtWidgets import QApplication, QMessageBox
 
 from SeevisionToolBox import Ui_MainWindow
@@ -36,11 +36,12 @@ def HidToolToolBar(btn_type):
     launchSoftware(software_path)
 
 
-def ScriptListControlBar(script_name):
+def ScriptListControlBar(script_index):
     script_path = ""
-    if script_name == "hellowWorld":
+    script_name = scriptList[script_index.row()]
+    if script_name == "helloWorld.py":
         script_path = "./Scripts/hellowWorld.py"
-    elif script_name == "getBetteryHealthd":
+    elif script_name == "getBatteryHealthd.py":
         script_path = "./Scripts/getBatteryHealthd.py"
     ScriptControlBar(script_path)
 
@@ -64,20 +65,21 @@ def ScriptControlBar(script_path):
     #     ui.log_output_EditText.appendPlainText(str(line_data))
     #     QApplication.processEvents()
     QMessageBox.information(mainWindow, "提示", "等待3s创建log文件……", QMessageBox.Ok)
-    sleep(3)
-    if logProcess:
-        QMessageBox.information(mainWindow, "提示", "脚本运行成功：【{}】".format(script_path), QMessageBox.Ok)
-        ui.log_output_EditText.appendPlainText("Here is log output Console:")
-        QApplication.processEvents()
-        with open(log_path, "r") as log_file:
-            while True:
-                line_data = log_file.readline()
-                if line_data != "":
-                    ui.log_output_EditText.appendPlainText(str(line_data).strip())
-                QApplication.processEvents()
-    else:
-        ui.statusbar.showMessage("脚本运行失败：【{}】".format(script_path), -1)
-        QMessageBox.information(mainWindow, "提示", "脚本运行失败：【{}】".format(script_path), QMessageBox.Ok)
+    while True:
+        if logProcess and os.path.exists(log_path):
+            QMessageBox.information(mainWindow, "提示", "脚本运行成功：【{}】".format(script_path), QMessageBox.Ok)
+            ui.statusbar.showMessage("脚本运行成功：【{}】".format(script_path), -1)
+            ui.log_output_EditText.appendPlainText("Here is log output Console:")
+            QApplication.processEvents()
+            with open(log_path, "r") as log_file:
+                while True:
+                    line_data = log_file.readline()
+                    if line_data != "":
+                        ui.log_output_EditText.appendPlainText(str(line_data).strip())
+                    QApplication.processEvents()
+        else:
+            ui.statusbar.showMessage("脚本运行失败：【{}】".format(script_path), -1)
+            continue
 
 
 def launchSoftware(software_path):
@@ -94,9 +96,6 @@ def closeSoftware():
 # 停止当前运行的脚本
 def stopRunningScript():
     try:
-        # if logProcess:
-        #     logProcess.kill()
-        #     sys.exit()
         if logProcess.poll() is None:
             reply = QMessageBox.question(mainWindow, "提示", "将会停止当前运行的脚本并退出程序后台……", QMessageBox.Yes | QMessageBox.No)
             if int(reply) == 16384:
@@ -105,6 +104,14 @@ def stopRunningScript():
                 pass
     except NameError:
         QMessageBox.information(mainWindow, "提示", "当前无脚本运行，无需STOP")
+
+
+def ScriptListViewBind():
+    global scriptList
+    listModel = QStringListModel()
+    scriptList = ["helloWorld.py", "getBatteryHealthd.py"]
+    listModel.setStringList(scriptList)
+    ui.listView_ScriptList.setModel(listModel)
 
 
 def ui_connect():
@@ -116,8 +123,8 @@ def ui_connect():
     ui.btn_BadPointCheck.clicked.connect(lambda: HidToolToolBar("badPointCheck"))
 
     # Script part
-    ui.btn_Script_HelloWorld.clicked.connect(lambda: ScriptListControlBar("hellowWorld"))
-    ui.btn_Script_GetBetteryHealthd.clicked.connect(lambda: ScriptListControlBar("getBetteryHealthd"))
+    ScriptListViewBind()
+    ui.listView_ScriptList.clicked.connect(ScriptListControlBar)
 
     # common part
     ui.menuItem_logClear.triggered.connect(clearLogOutput)
@@ -128,7 +135,10 @@ def ui_connect():
 # 清除log输出显示内容
 def clearLogOutput():
     if ui.log_output_EditText.getPaintContext() != "":
-        reply = QMessageBox.question(mainWindow, "提示", "将会清除以下Log：{}".format(str(ui.log_output_EditText.toPlainText())),
+        consoleContent = str(ui.log_output_EditText.toPlainText())
+        if len(consoleContent) >= 200:
+            consoleContent = consoleContent[-200:]
+        reply = QMessageBox.question(mainWindow, "提示", "将会清除以下Log：{}".format(consoleContent),
                                      QMessageBox.Yes | QMessageBox.No)
         if int(reply) == 16384:
             ui.log_output_EditText.clear()
