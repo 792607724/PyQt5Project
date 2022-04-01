@@ -181,6 +181,22 @@
       <string>helloWorld.py</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="btn_Script_GetBetteryHealthd">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>301</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>点击运行getBatteryHealthd.py脚本</string>
+     </property>
+     <property name="text">
+      <string>getBatteryHealthd.py</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
@@ -215,8 +231,38 @@
      <height>23</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_Log">
+    <property name="title">
+     <string>log控制</string>
+    </property>
+    <addaction name="menuItem_logClear"/>
+    <addaction name="menuItem_logDelete"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>脚本控制</string>
+    </property>
+    <addaction name="menuItem_stopScript"/>
+   </widget>
+   <addaction name="menu_Log"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="menuItem_logClear">
+   <property name="text">
+    <string>清除log输出显示内容</string>
+   </property>
+  </action>
+  <action name="menuItem_logDelete">
+   <property name="text">
+    <string>删除log文件./log.txt</string>
+   </property>
+  </action>
+  <action name="menuItem_stopScript">
+   <property name="text">
+    <string>停止脚本</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

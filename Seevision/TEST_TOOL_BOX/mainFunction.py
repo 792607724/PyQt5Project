@@ -40,6 +40,8 @@ def ScriptListControlBar(script_name):
     script_path = ""
     if script_name == "hellowWorld":
         script_path = "./Scripts/hellowWorld.py"
+    elif script_name == "getBetteryHealthd":
+        script_path = "./Scripts/getBatteryHealthd.py"
     ScriptControlBar(script_path)
 
 
@@ -50,9 +52,11 @@ def ScriptControlBar(script_path):
     :param script_path:
     :return:
     """
+    global logProcess
     log_path = ".\log.txt"
     # logProcess = subprocess.Popen("python {} one two 2>&1 | tee {}".format(script_path, log_path), shell=True)
     logProcess = subprocess.Popen("python {} ".format(script_path), shell=True)
+    ui.statusbar.showMessage("正在运行脚本：【{}】".format(script_path), -1)
     # logProcess = subprocess.Popen("python {}".format(script_path), shell=True, stdout=subprocess.PIPE,
     #                               stderr=subprocess.PIPE, bufsize=1)
     # while logProcess.poll() is None:
@@ -69,20 +73,38 @@ def ScriptControlBar(script_path):
             while True:
                 line_data = log_file.readline()
                 if line_data != "":
-                    ui.log_output_EditText.appendPlainText(str(line_data))
+                    ui.log_output_EditText.appendPlainText(str(line_data).strip())
                 QApplication.processEvents()
     else:
+        ui.statusbar.showMessage("脚本运行失败：【{}】".format(script_path), -1)
         QMessageBox.information(mainWindow, "提示", "脚本运行失败：【{}】".format(script_path), QMessageBox.Ok)
 
 
 def launchSoftware(software_path):
     global software
     software = subprocess.Popen(software_path)
+    ui.statusbar.showMessage("软件正在运行：【{}】".format(software_path), -1)
 
 
 def closeSoftware():
     if software:
         software.kill()
+
+
+# 停止当前运行的脚本
+def stopRunningScript():
+    try:
+        # if logProcess:
+        #     logProcess.kill()
+        #     sys.exit()
+        if logProcess.poll() is None:
+            reply = QMessageBox.question(mainWindow, "提示", "将会停止当前运行的脚本并退出程序后台……", QMessageBox.Yes | QMessageBox.No)
+            if int(reply) == 16384:
+                sys.exit()
+            elif int(reply) == 65536:
+                pass
+    except NameError:
+        QMessageBox.information(mainWindow, "提示", "当前无脚本运行，无需STOP")
 
 
 def ui_connect():
@@ -95,6 +117,35 @@ def ui_connect():
 
     # Script part
     ui.btn_Script_HelloWorld.clicked.connect(lambda: ScriptListControlBar("hellowWorld"))
+    ui.btn_Script_GetBetteryHealthd.clicked.connect(lambda: ScriptListControlBar("getBetteryHealthd"))
+
+    # common part
+    ui.menuItem_logClear.triggered.connect(clearLogOutput)
+    ui.menuItem_logDelete.triggered.connect(deleteLogFile)
+    ui.menuItem_stopScript.triggered.connect(stopRunningScript)
+
+
+# 清除log输出显示内容
+def clearLogOutput():
+    if ui.log_output_EditText.getPaintContext() != "":
+        reply = QMessageBox.question(mainWindow, "提示", "将会清除以下Log：{}".format(str(ui.log_output_EditText.toPlainText())),
+                                     QMessageBox.Yes | QMessageBox.No)
+        if int(reply) == 16384:
+            ui.log_output_EditText.clear()
+            ui.statusbar.showMessage("Log已清除完毕……", -1)
+        elif int(reply) == 65536:
+            pass
+
+
+# 删除log文件./log.txt
+def deleteLogFile():
+    if os.path.exists("./log.txt"):
+        reply = QMessageBox.question(mainWindow, "提示", "将会删除本地根目录下的log.txt文件……", QMessageBox.Yes | QMessageBox.No)
+        if int(reply) == 16384:
+            os.remove("./log.txt")
+            ui.statusbar.showMessage("Log文件已删除……", -1)
+        elif int(reply) == 65536:
+            pass
 
 
 if __name__ == '__main__':

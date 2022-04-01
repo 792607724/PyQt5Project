@@ -14,7 +14,7 @@ os.path.abspath("..")
 
 def toTxt(log):
     with open(".\log.txt", "a+") as f:
-        f.write(log + "\n")
+        f.write(str(log) + "\n")
 
 
 if __name__ == '__main__':

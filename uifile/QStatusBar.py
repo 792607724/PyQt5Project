@@ -53,7 +53,7 @@ class Ui_MainWindow(object):
     def getDateAndTime(self):
         dateTime = QtCore.QDateTime.currentDateTime()
         timeFormat = dateTime.toString("yyyy-MM-dd HH:mm:ss")
-        self.statusbar.showMessage("北京时间：{}".format(timeFormat), 0)
+        self.statusbar.showMessage("北京时间：{}".format(timeFormat), -1)
 
     def startTimer(self):
         self.timer.start(3000)
