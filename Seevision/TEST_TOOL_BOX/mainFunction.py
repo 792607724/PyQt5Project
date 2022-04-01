@@ -43,7 +43,12 @@ def ScriptListControlBar(script_index):
         script_path = "./Scripts/hellowWorld.py"
     elif script_name == "getBatteryHealthd.py":
         script_path = "./Scripts/getBatteryHealthd.py"
-    ScriptControlBar(script_path)
+    elif ".py" not in script_name:
+        QMessageBox.critical(mainWindow, "Error", "请选择正确脚本运行……", QMessageBox.Ok)
+        script_path = ""
+        ui.statusbar.showMessage("Wrong script chosen, please check!", -1)
+    if script_path != "":
+        ScriptControlBar(script_path)
 
 
 def ScriptControlBar(script_path):
@@ -109,7 +114,7 @@ def stopRunningScript():
 def ScriptListViewBind():
     global scriptList
     listModel = QStringListModel()
-    scriptList = ["helloWorld.py", "getBatteryHealthd.py"]
+    scriptList = ["helloWorld.py", "getBatteryHealthd.py", "逐一适配"]
     listModel.setStringList(scriptList)
     ui.listView_ScriptList.setModel(listModel)
 
