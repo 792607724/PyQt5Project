@@ -60,15 +60,8 @@ def ScriptControlBar(script_path):
     """
     global logProcess
     log_path = ".\log.txt"
-    # logProcess = subprocess.Popen("python {} one two 2>&1 | tee {}".format(script_path, log_path), shell=True)
     logProcess = subprocess.Popen("python {} ".format(script_path), shell=True)
     ui.statusbar.showMessage("正在运行脚本：【{}】".format(script_path), -1)
-    # logProcess = subprocess.Popen("python {}".format(script_path), shell=True, stdout=subprocess.PIPE,
-    #                               stderr=subprocess.PIPE, bufsize=1)
-    # while logProcess.poll() is None:
-    #     line_data = logProcess.stdout.readline().decode("utf-8")
-    #     ui.log_output_EditText.appendPlainText(str(line_data))
-    #     QApplication.processEvents()
     QMessageBox.information(mainWindow, "提示", "等待3s创建log文件……", QMessageBox.Ok)
     while True:
         if logProcess and os.path.exists(log_path):
