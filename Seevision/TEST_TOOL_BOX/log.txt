@@ -2,3 +2,9 @@ Hello World! 0
 Hello World! 1
 Hello World! 2
 Hello World! 3
+第1次dump电池充电数据情况：
+
+(None, None)
+第2次dump电池充电数据情况：
+
+(None, None)
