@@ -107,7 +107,8 @@ def stopRunningScript():
 def ScriptListViewBind():
     global scriptList
     listModel = QStringListModel()
-    scriptList = ["helloWorld.py", "getBatteryHealthd.py", "逐一适配"]
+    scriptList = ["Demo脚本演示：", "helloWorld.py", "getBatteryHealthd.py",
+                  "BOE测试脚本：", "1、BOE继电器上下电压力测试（3000次）："]
     listModel.setStringList(scriptList)
     ui.listView_ScriptList.setModel(listModel)
 

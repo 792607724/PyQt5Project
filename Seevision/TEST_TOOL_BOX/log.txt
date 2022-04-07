@@ -8,3 +8,12 @@ Hello World! 3
 第2次dump电池充电数据情况：
 
 (None, None)
+第1次dump电池充电数据情况：
+
+(None, None)
+第2次dump电池充电数据情况：
+
+(None, None)
+第3次dump电池充电数据情况：
+
+(None, None)
