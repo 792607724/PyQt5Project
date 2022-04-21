@@ -84,7 +84,7 @@ class Ui_MainWindow(object):
         # inputValue, flag = QInputDialog.getDouble(mainWindow, "Input dialog", "Get Double", 255.255, 0.1, 512.512, 3)
         # self.listWidget.addItems(["text: {}".format(inputValue), "flag：{}".format(flag)])
         font, flag = QFontDialog.getFont()
-        self.listWidget.addItems()
+        self.listWidget.addItems(["font: {}".format(font), "flag：{}".format(flag)])
 
 
 if __name__ == '__main__':
