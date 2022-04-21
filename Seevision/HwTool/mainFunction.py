@@ -186,31 +186,31 @@ def runButton():
     global screenX, screenY
     if excel_path == "" or layer == "":
         QMessageBox.critical(mainWindow, "错误：", "运行前请选择需要抓取的层以及选择对应的Excel文件", QMessageBox.Ok)
+        ui.runningResultTextEdit.setPlainText("文件抓取失败，请检查所需参数以及表格格式是否正常！")
     else:
         QMessageBox.information(mainWindow, "提示：", "运行后，请立即在5s内切换到PADS Layout界面", QMessageBox.Ok)
-    sleep(5)
-    element_list = read_excel_for_page_element(form=excel_path)
-    screenX, screenY = pyautogui.size()
-    testSide = layer
-    form = excel_path
-    print(element_list)
-    for element in element_list:
-        e_row = element[0]
-        e_type = element[1]
-        e_name = element[2]
-        e_topOrbottom = element[3]
-        e_degree = element[4]
-        if e_topOrbottom in testSide:
-            print("A")
-            result = catchFramePicture(e_name, e_type, e_degree)
-            if result == "Skip":
-                pass
+        sleep(5)
+        element_list = read_excel_for_page_element(form=excel_path)
+        screenX, screenY = pyautogui.size()
+        testSide = layer
+        form = excel_path
+        for element in element_list:
+            e_row = element[0]
+            e_type = element[1]
+            e_name = element[2]
+            e_topOrbottom = element[3]
+            e_degree = element[4]
+            if e_topOrbottom in testSide:
+                result = catchFramePicture(e_name, e_type, e_degree)
+                if result == "Skip":
+                    pass
+                else:
+                    write_into_excel(form=form, sheet_name="Sheet1", row=e_row, column=12, value=result)
             else:
-                write_into_excel(form=form, sheet_name="Sheet1", row=e_row, column=12, value=result)
-        else:
-            write_into_excel(form=form, sheet_name="Sheet1", row=e_row, column=12, value="")
-    print("Done")
-    ui.runningResultTextEdit.setPlainText("本次{}层元件内容抓取完成:\n请查看表格：{}\n请核对元件截图：{}".format(layer, form, "在Screenshot文件夹下"))
+                write_into_excel(form=form, sheet_name="Sheet1", row=e_row, column=12, value="")
+        print("Done")
+        ui.runningResultTextEdit.setPlainText(
+            "本次{}层元件内容抓取完成:\n请查看表格：{}\n请核对元件截图：{}".format(layer, form, "在Screenshot文件夹下"))
 
 
 def ui_connect():
