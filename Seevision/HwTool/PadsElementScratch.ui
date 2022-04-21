@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>811</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPlainTextEdit" name="plainTextEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>791</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="plainText">
+     <string>1、打开PADS Layout-&gt;打开对应需要核对的pcb文件-&gt;导出相应的excel表格-&gt;在excel表格最前面增加一列名为number，值为从1递增到最后一行
+2、PADS Layout-&gt;ctrl+alt+c打开颜色设置-&gt;
+    A、先抓取Top层数据：
+    勾选对象类型：参考编号、顶面、底面
+    勾选层：Top、Silkscreen Top、Assembly Drawing Top
+    B、再抓取Bottom层数据：
+    勾选对象类型：参考编号、顶面、底面
+    勾选层：Bottom、Silkscreen Bottom、Assembly Drawing Bottom
+3、选择当前工作表excel文件
+4、选择当前抓取的层级：Top还是Bottom
+5、点击开始运行，切换到PADS Layout界面，等待抓取完成
+6、逐步完成全部的抓取</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="layerChooseCombox">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>240</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Top</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bottom</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>215</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>选择需要抓取的图层：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>5</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>元件抓取工具使用说明：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>266</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>选择Excel文件：</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="chooseFileButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>290</y>
+      <width>75</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>选择文件</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="choosedFilePathTextEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>290</y>
+      <width>691</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="runningStatusTextEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>330</y>
+      <width>691</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>13</x>
+      <y>329</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>当前运行状态：</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="runningButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>370</y>
+      <width>781</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>运行按钮</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>425</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>本次运行结果：</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="runningResultTextEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>450</y>
+      <width>791</width>
+      <height>141</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
