@@ -1,0 +1,85 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/HwTool/mainFunction.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": false
+  },
+  {
+   "optionDest": "console",
+   "value": true
+  },
+  {
+   "optionDest": "icon_file",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/HwTool/seevi_64.ico"
+  },
+  {
+   "optionDest": "name",
+   "value": "\u786c\u4ef6PADS\u5143\u4ef6\u6293\u53d6\u5de5\u5177"
+  },
+  {
+   "optionDest": "ascii",
+   "value": false
+  },
+  {
+   "optionDest": "clean_build",
+   "value": false
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "disable_windowed_traceback",
+   "value": false
+  },
+  {
+   "optionDest": "embed_manifest",
+   "value": true
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "win_private_assemblies",
+   "value": false
+  },
+  {
+   "optionDest": "win_no_prefer_redirects",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/HwTool/PadsElementScratch.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/PycharmProjects/PyQt5Project/Seevision/HwTool/seevi_64.ico;."
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": false,
+  "manualArguments": ""
+ }
+}
