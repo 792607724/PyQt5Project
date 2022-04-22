@@ -22,7 +22,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.plainTextEdit.setEnabled(False)
-        self.plainTextEdit.setGeometry(QtCore.QRect(10, 30, 791, 181))
+        self.plainTextEdit.setGeometry(QtCore.QRect(10, 25, 791, 191))
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.layerChooseCombox = QtWidgets.QComboBox(self.centralwidget)
         self.layerChooseCombox.setGeometry(QtCore.QRect(8, 240, 121, 22))
@@ -78,6 +78,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.plainTextEdit.setPlainText(_translate("MainWindow",
+                                                   "【注意：输入法切换到英文后再运行】\n"
                                                    "1、打开PADS Layout->打开对应需要核对的pcb文件->导出相应的excel表格->在excel表格最前面增加一列名为number，值为从1递增到最后一行\n"
                                                    "2、PADS Layout->ctrl+alt+c打开颜色设置->\n"
                                                    "    A、先抓取Top层数据：\n"
