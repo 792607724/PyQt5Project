@@ -6,7 +6,6 @@ from time import sleep
 import openpyxl
 import pandas as pd
 import pyautogui
-from PyQt5.QtCore import Qt
 
 os.path.abspath(".")
 """
