@@ -9,7 +9,7 @@
 import sys
 
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QInputDialog, QFontDialog
+from PyQt5.QtWidgets import QFileDialog, QColorDialog
 
 
 class Ui_MainWindow(object):
@@ -83,8 +83,10 @@ class Ui_MainWindow(object):
         # self.listWidget.addItems(["text: {}".format(nputValue), "flag：{}".format(flag)])
         # inputValue, flag = QInputDialog.getDouble(mainWindow, "Input dialog", "Get Double", 255.255, 0.1, 512.512, 3)
         # self.listWidget.addItems(["text: {}".format(inputValue), "flag：{}".format(flag)])
-        font, flag = QFontDialog.getFont()
-        self.listWidget.addItems(["font: {}".format(font), "flag：{}".format(flag)])
+        # font, flag = QFontDialog.getFont()
+        # self.listWidget.addItems(["font: {}".format(font), "flag：{}".format(flag)])
+        colorObj = QColorDialog.getColor()
+        self.listWidget.addItems(["color: {}".format(colorObj.name()), "value：{}".format(colorObj.value())])
 
 
 if __name__ == '__main__':

@@ -194,6 +194,7 @@ def runButton():
         testSide = layer
         form = excel_path
         for element in element_list:
+            print("A")
             e_row = element[0]
             e_type = element[1]
             e_name = element[2]
@@ -204,10 +205,13 @@ def runButton():
                 if result == "Skip":
                     pass
                 else:
+                    print("B")
                     write_into_excel(form=form, sheet_name="Sheet1", row=e_row, column=12, value=result)
             else:
+                print("C")
                 write_into_excel(form=form, sheet_name="Sheet1", row=e_row, column=12, value="")
         print("Done")
+        print("D")
         ui.runningResultTextEdit.setPlainText(
             "本次{}层元件内容抓取完成:\n请查看表格：{}\n请核对元件截图：{}".format(layer, form, "在Screenshot文件夹下"))
 
