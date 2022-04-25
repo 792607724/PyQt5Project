@@ -7,6 +7,8 @@ import openpyxl
 import pandas as pd
 import pyautogui
 
+pyautogui.PAUSE = 0.07
+
 os.path.abspath(".")
 """
     @Project:PyQt5Project
@@ -214,6 +216,7 @@ def runButton():
         print("D")
         ui.runningResultTextEdit.setPlainText(
             "本次{}层元件内容抓取完成:\n请查看表格：{}\n请核对元件截图：{}".format(layer, form, "在Screenshot文件夹下"))
+        QMessageBox.information(mainWindow, "进度：", "抓取完成，请核对信息 或 进行下一次抓取！", QMessageBox.Ok)
 
 
 def ui_connect():
